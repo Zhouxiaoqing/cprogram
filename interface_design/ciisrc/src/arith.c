@@ -1,5 +1,7 @@
 static char rcsid[] = "$Id: arith.c 6 2007-01-22 00:45:22Z drhanson $";
+
 #include "arith.h"
+
 int Arith_max(int x, int y) {
 	return x > y ? x : y;
 }

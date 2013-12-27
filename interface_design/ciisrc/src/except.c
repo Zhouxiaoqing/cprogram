@@ -1,9 +1,12 @@
 static char rcsid[] = "$Id: except.c 6 2007-01-22 00:45:22Z drhanson $" "\n$Id: except.c 6 2007-01-22 00:45:22Z drhanson $";
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "assert.h"
 #include "except.h"
+
 #define T Except_T
+
 Except_Frame *Except_stack = NULL;
 void Except_raise(const T *e, const char *file,
 	int line) {
@@ -69,4 +72,5 @@ void Except_pop(void) {
 	cond = TlsSetValue(Except_index, tos->prev);
 	assert(cond == TRUE);
 }
+
 #endif

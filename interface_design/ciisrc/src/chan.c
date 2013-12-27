@@ -1,15 +1,19 @@
 static char rcsid[] = "$Id: chan.c 6 2007-01-22 00:45:22Z drhanson $";
+
 #include <string.h>
 #include "assert.h"
 #include "mem.h"
 #include "chan.h"
 #include "sem.h"
+
 #define T Chan_T
+
 struct T {
 	const void *ptr;
 	int *size;
 	Sem_T send, recv, sync;
 };
+
 T Chan_new(void) {
 	T c;
 	NEW(c);
@@ -29,6 +33,7 @@ int Chan_send(Chan_T c, const void *ptr, int size) {
 	Sem_wait(&c->sync);
 	return size;
 }
+
 int Chan_receive(Chan_T c, void *ptr, int size) {
 	int n;
 	assert(c);

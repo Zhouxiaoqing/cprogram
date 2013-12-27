@@ -1,12 +1,15 @@
 static char rcsid[] = "$Id: double.c 6 2007-01-22 00:45:22Z drhanson $";
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
 #include <ctype.h>
 #include <string.h>
+
 int linenum;
 int getword(FILE *, char *, int);
 void doubleword(char *, FILE *);
+
 int main(int argc, char *argv[]) {
 	int i;
 	for (i = 1; i < argc; i++) {
@@ -23,6 +26,7 @@ int main(int argc, char *argv[]) {
 	if (argc == 1) doubleword(NULL, stdin);
 	return EXIT_SUCCESS;
 }
+
 int getword(FILE *fp, char *buf, int size) {
 	int c;
 	c = getc(fp);
@@ -41,6 +45,7 @@ int getword(FILE *fp, char *buf, int size) {
 		ungetc(c, fp);
 	return buf[0] != '\0';
 }
+
 void doubleword(char *name, FILE *fp) {
 	char prev[128], word[128];
 	linenum = 1;

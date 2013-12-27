@@ -1,4 +1,5 @@
 static const char *rcsid = "$Id: ap.c 197 2008-09-27 21:59:31Z drhanson $";
+
 #include <ctype.h>
 #include <limits.h>
 #include <stdlib.h>
@@ -15,10 +16,12 @@ struct T {
 	int size;
 	XP_T digits;
 };
+
 #define iszero(x) ((x)->ndigits==1 && (x)->digits[0]==0)
 #define maxdigits(x,y) ((x)->ndigits > (y)->ndigits ? \
 	(x)->ndigits : (y)->ndigits)
 #define isone(x) ((x)->ndigits==1 && (x)->digits[0]==1)
+
 static T normalize(T z, int n);
 static int cmp(T x, T y);
 static T mk(int size) {

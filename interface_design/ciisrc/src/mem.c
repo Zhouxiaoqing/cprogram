@@ -1,10 +1,13 @@
 static char rcsid[] = "$Id: mem.c 217 2010-10-06 04:05:55Z drhanson $";
+
 #include <stdlib.h>
 #include <stddef.h>
 #include "assert.h"
 #include "except.h"
 #include "mem.h"
+
 const Except_T Mem_Failed = { "Allocation failed" };
+
 void *Mem_alloc(long nbytes, const char *file, int line){
 	void *ptr;
 	assert(nbytes > 0);
@@ -18,6 +21,7 @@ void *Mem_alloc(long nbytes, const char *file, int line){
 		}
 	return ptr;
 }
+
 void *Mem_calloc(long count, long nbytes,
 	const char *file, int line) {
 	void *ptr;
@@ -33,10 +37,12 @@ void *Mem_calloc(long count, long nbytes,
 		}
 	return ptr;
 }
+
 void Mem_free(void *ptr, const char *file, int line) {
 	if (ptr)
 		free(ptr);
 }
+
 void *Mem_resize(void *ptr, long nbytes,
 	const char *file, int line) {
 	assert(ptr);

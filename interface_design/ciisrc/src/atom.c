@@ -1,15 +1,19 @@
 static char rcsid[] = "$Id: atom.c 6 2007-01-22 00:45:22Z drhanson $";
+
 #include "atom.h"
 #include <string.h>
 #include "assert.h"
 #include <limits.h>
 #include "mem.h"
+
 #define NELEMS(x) ((sizeof (x))/(sizeof ((x)[0])))
+
 static struct atom {
 	struct atom *link;
 	int len;
 	char *str;
 } *buckets[2048];
+
 static unsigned long scatter[] = {
 2078917053, 143302914, 1027100827, 1953210302, 755253631, 2002600785,
 1405390230, 45248011, 1099951567, 433832350, 2018585307, 438263339,
@@ -55,10 +59,12 @@ static unsigned long scatter[] = {
 2143346068, 1975249606, 1136476375, 262925046, 92778659, 1856406685,
 1884137923, 53392249, 1735424165, 1602280572
 };
+
 const char *Atom_string(const char *str) {
 	assert(str);
 	return Atom_new(str, strlen(str));
 }
+
 const char *Atom_int(long n) {
 	char str[43];
 	char *s = str + sizeof str;
@@ -76,6 +82,7 @@ const char *Atom_int(long n) {
 		*--s = '-';
 	return Atom_new(s, (str + sizeof str) - s);
 }
+
 const char *Atom_new(const char *str, int len) {
 	unsigned long h;
 	int i;
@@ -102,6 +109,7 @@ const char *Atom_new(const char *str, int len) {
 	buckets[h] = p;
 	return p->str;
 }
+
 int Atom_length(const char *str) {
 	struct atom *p;
 	int i;
